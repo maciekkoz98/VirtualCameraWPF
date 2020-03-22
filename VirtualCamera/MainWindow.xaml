@@ -6,13 +6,15 @@
     xmlns:local="clr-namespace:VirtualCamera"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-    Width="800"
-    Height="650"
+    ResizeMode="CanMinimize"
+    Width="806"
+    Height="649"
     mc:Ignorable="d"
     KeyDown="KeyboardKeyPressed">
     <Canvas
         x:Name="sceneCanvas"
-        Height="625"
+        Width="800"
+        Height="620"
         Loaded="LoadSceneFromFile" 
         />
 </Window>
