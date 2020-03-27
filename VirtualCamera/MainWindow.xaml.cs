@@ -24,6 +24,7 @@ namespace VirtualCamera
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Scene fileScene;
         public MainWindow()
         {
             InitializeComponent();
@@ -49,20 +50,15 @@ namespace VirtualCamera
                     Environment.Exit(1);
                 }
             }
-            Scene fileScene = JsonConvert.DeserializeObject<Scene>(file);
+            fileScene = JsonConvert.DeserializeObject<Scene>(file);
             fileScene.MakeCameraPosZeroPoint();
             fileScene.From3Dto2D();
-            //List<double[,]> pointsList = fileScene.CreatePointsList();
-            //foreach (double[,] points in pointsList)
-            //{
-            //    DrawRectangle(points);
-            //}
             DrawScene(fileScene.Points2D);
         }
 
         private void DrawScene(List<List<double>> points)
         {
-            Trace.WriteLine(points[4][0]);
+            sceneCanvas.Children.Clear();
             for (int i = 0; i < points.Count; i += 8)
             {
                 DrawRectangle(new List<List<double>> { points[0 + i], points[1 + i], points[5 + i], points[4 + i] }, 0 + i);
@@ -74,6 +70,7 @@ namespace VirtualCamera
 
         private void DrawRectangle(List<List<double>> points, int color)
         {
+
             for (int i = 0; i < points.Count; i++)
             {
                 Line line;
@@ -124,13 +121,33 @@ namespace VirtualCamera
         {
             if (e.Key == Key.D)
             {
-                Line child = (Line)sceneCanvas.Children[0];
-                child.X1 += 50;
+                fileScene.MoveCamera("D");
+                DrawScene(fileScene.Points2D);
             }
             else if (e.Key == Key.A)
             {
-                Line child = (Line)sceneCanvas.Children[0];
-                child.X1 -= 50;
+                fileScene.MoveCamera("A");
+                DrawScene(fileScene.Points2D);
+            }
+            else if (e.Key == Key.W)
+            {
+                fileScene.MoveCamera("W");
+                DrawScene(fileScene.Points2D);
+            }
+            else if (e.Key == Key.S)
+            {
+                fileScene.MoveCamera("S");
+                DrawScene(fileScene.Points2D);
+            }
+            else if (e.Key == Key.Down)
+            {
+                fileScene.MoveCamera("Down");
+                DrawScene(fileScene.Points2D);
+            }
+            else if (e.Key == Key.Up)
+            {
+                fileScene.MoveCamera("Up");
+                DrawScene(fileScene.Points2D);
             }
         }
     }

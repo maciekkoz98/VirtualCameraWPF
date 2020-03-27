@@ -72,5 +72,67 @@ namespace VirtualCamera.Utils
                 Points2D.Add(point2D);
             }
         }
+
+        public void MoveCamera(string direction)
+        {
+            switch (direction)
+            {
+                case "D":
+                    for (int i = 0; i < Cuboid1.Count; i++)
+                    {
+                        Cuboid1[i][0] = Cuboid1[i][0] - 10;
+                        Cuboid2[i][0] = Cuboid2[i][0] - 10;
+                        Cuboid3[i][0] = Cuboid3[i][0] - 10;
+                        Cuboid4[i][0] = Cuboid4[i][0] - 10;
+                    }
+                    break;
+                case "A":
+                    for (int i = 0; i < Cuboid1.Count; i++)
+                    {
+                        Cuboid1[i][0] = Cuboid1[i][0] + 10;
+                        Cuboid2[i][0] = Cuboid2[i][0] + 10;
+                        Cuboid3[i][0] = Cuboid3[i][0] + 10;
+                        Cuboid4[i][0] = Cuboid4[i][0] + 10;
+                    }
+                    break;
+                case "W":
+                    for (int i = 0; i < Cuboid1.Count; i++)
+                    {
+                        Cuboid1[i][1] = Cuboid1[i][1] + 10;
+                        Cuboid2[i][1] = Cuboid2[i][1] + 10;
+                        Cuboid3[i][1] = Cuboid3[i][1] + 10;
+                        Cuboid4[i][1] = Cuboid4[i][1] + 10;
+                    }
+                    break;
+                case "S":
+                    for (int i = 0; i < Cuboid1.Count; i++)
+                    {
+                        Cuboid1[i][1] = Cuboid1[i][1] - 10;
+                        Cuboid2[i][1] = Cuboid2[i][1] - 10;
+                        Cuboid3[i][1] = Cuboid3[i][1] - 10;
+                        Cuboid4[i][1] = Cuboid4[i][1] - 10;
+                    }
+                    break;
+                case "Down":
+                    for (int i = 0; i < Cuboid1.Count; i++)
+                    {
+                        Cuboid1[i][2] = Cuboid1[i][2] + 10;
+                        Cuboid2[i][2] = Cuboid2[i][2] + 10;
+                        Cuboid3[i][2] = Cuboid3[i][2] + 10;
+                        Cuboid4[i][2] = Cuboid4[i][2] + 10;
+                    }
+                    break;
+                case "Up":
+                    for (int i = 0; i < Cuboid1.Count; i++)
+                    {
+                        Cuboid1[i][2] = Cuboid1[i][2] - 10;
+                        Cuboid2[i][2] = Cuboid2[i][2] - 10;
+                        Cuboid3[i][2] = Cuboid3[i][2] - 10;
+                        Cuboid4[i][2] = Cuboid4[i][2] - 10;
+                    }
+                    break;
+            }
+            From3Dto2D();
+        }
     }
 }
