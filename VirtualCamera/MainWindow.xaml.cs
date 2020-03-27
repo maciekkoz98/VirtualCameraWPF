@@ -50,56 +50,70 @@ namespace VirtualCamera
                 }
             }
             Scene fileScene = JsonConvert.DeserializeObject<Scene>(file);
-           // fileScene.MakeCameraPosZeroPoint();
+            fileScene.MakeCameraPosZeroPoint();
             fileScene.From3Dto2D();
-            List<double[,]> pointsList = fileScene.CreatePointsList();
-            foreach (double[,] points in pointsList)
+            //List<double[,]> pointsList = fileScene.CreatePointsList();
+            //foreach (double[,] points in pointsList)
+            //{
+            //    DrawRectangle(points);
+            //}
+            DrawScene(fileScene.Points2D);
+        }
+
+        private void DrawScene(List<List<double>> points)
+        {
+            Trace.WriteLine(points[4][0]);
+            for (int i = 0; i < points.Count; i += 8)
             {
-                DrawRectangle(points);
+                DrawRectangle(new List<List<double>> { points[0 + i], points[1 + i], points[5 + i], points[4 + i] }, 0 + i);
+                DrawRectangle(new List<List<double>> { points[1 + i], points[2 + i], points[6 + i], points[5 + i] }, 0 + i);
+                DrawRectangle(new List<List<double>> { points[2 + i], points[3 + i], points[7 + i], points[6 + i] }, 0 + i);
+                DrawRectangle(new List<List<double>> { points[0 + i], points[3 + i], points[7 + i], points[4 + i] }, 0 + i);
             }
         }
 
-        private void DrawRectangle(double[,] points)
+        private void DrawRectangle(List<List<double>> points, int color)
         {
-            for (int i = 0; i < points.GetLength(0); i++)
+            for (int i = 0; i < points.Count; i++)
             {
                 Line line;
-                if (i == points.GetLength(0) - 1)
+                if (i == points.Count - 1)
                 {
                     line = new Line
                     {
-                        X1 = 400 + points[i, 0],
-                        Y1 = 310 + points[i, 1],
-                        X2 = 400 + points[0, 0],
-                        Y2 = 310 + points[0, 1],
-                        Stroke = Brushes.Green,
+                        X1 = 400 + points[i][0],
+                        Y1 = 310 + points[i][1],
+                        X2 = 400 + points[0][0],
+                        Y2 = 310 + points[0][1],
                         StrokeThickness = 2
                     };
-
                 }
                 else
                 {
                     line = new Line
                     {
-                        X1 = 400 + points[i, 0],
-                        Y1 = 310 + points[i, 1],
-                        X2 = 400 + points[i + 1, 0],
-                        Y2 = 310 + points[i + 1, 1],
-                        //Stroke = Brushes.White,
+                        X1 = 400 + points[i][0],
+                        Y1 = 310 + points[i][1],
+                        X2 = 400 + points[i + 1][0],
+                        Y2 = 310 + points[i + 1][1],
                         StrokeThickness = 2
                     };
                 }
-                if (i % 4 == 0)
+                if (color == 0)
+                {
+                    line.Stroke = Brushes.White;
+                }
+                else if (color == 8)
+                {
+                    line.Stroke = Brushes.Green;
+                }
+                else if (color == 16)
                 {
                     line.Stroke = Brushes.Purple;
                 }
-                else if (i % 4 == 1)
+                else if (color == 24)
                 {
                     line.Stroke = Brushes.Yellow;
-                }
-                else if (i % 4 == 2)
-                {
-                    line.Stroke = Brushes.Orange;
                 }
                 sceneCanvas.Children.Add(line);
             }

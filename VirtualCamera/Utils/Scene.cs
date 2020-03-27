@@ -9,13 +9,14 @@ namespace VirtualCamera.Utils
 {
     class Scene
     {
-        private readonly int distance = 500;
+        private readonly int distance = 1000;
 
         public int[] CameraPos { get; set; }
         public List<List<double>> Cuboid1 { get; set; }
         public List<List<double>> Cuboid2 { get; set; }
         public List<List<double>> Cuboid3 { get; set; }
-        public List<List<double>> Cuboid4 { set; get; }
+        public List<List<double>> Cuboid4 { get; set; }
+        public List<List<double>> Points2D { get; set; }
 
         public void MakeCameraPosZeroPoint()
         {
@@ -33,40 +34,43 @@ namespace VirtualCamera.Utils
 
         public void From3Dto2D()
         {
+            Points2D = new List<List<double>>();
             for (int i = 0; i < Cuboid1.Count; i++)
             {
-                for (int j = 0; j < Cuboid1[i].Count; j++)
+                List<double> point2D = new List<double>
                 {
-                    Cuboid1[i][j] = Cuboid1[i][j] * distance / (Cuboid1[i][2] + distance);
-                    Cuboid2[i][j] = Cuboid2[i][j] * distance / (Cuboid2[i][2] + distance);
-                    Cuboid3[i][j] = Cuboid3[i][j] * distance / (Cuboid3[i][2] + distance);
-                    Cuboid4[i][j] = Cuboid4[i][j] * distance / (Cuboid4[i][2] + distance);
-                }
+                    Cuboid1[i][0] * distance / (Cuboid1[i][2] + distance),
+                    Cuboid1[i][1] * distance / (Cuboid1[i][2] + distance)
+                };
+                Points2D.Add(point2D);
             }
-        }
-
-        public List<double[,]> CreatePointsList()
-        {
-            List<double[,]> pointsList = new List<double[,]>
+            for (int i = 0; i < Cuboid2.Count; i++)
             {
-                //new double[4, 2] { { Cuboid1[1][0], Cuboid1[1][1] }, { Cuboid1[5][0], Cuboid1[5][1] }, { Cuboid1[6][0], Cuboid1[6][1] }, { Cuboid1[2][0], Cuboid1[2][1] } },
-                //new double[4, 2] { { Cuboid1[0][0], Cuboid1[0][1] }, { Cuboid1[4][0], Cuboid1[4][1] }, { Cuboid1[5][0], Cuboid1[5][1] }, { Cuboid1[1][0], Cuboid1[1][1] } },
-                //new double[4, 2] { { Cuboid1[3][0], Cuboid1[3][1] }, { Cuboid1[7][0], Cuboid1[7][1] }, { Cuboid1[6][0], Cuboid1[6][1] }, { Cuboid1[2][0], Cuboid1[2][1] } },
-                //new double[4, 2] { { Cuboid1[0][0], Cuboid1[0][1] }, { Cuboid1[4][0], Cuboid1[4][1] }, { Cuboid1[7][0], Cuboid1[7][1] }, { Cuboid1[3][0], Cuboid1[3][1] } },
-                new double[4, 2] { { Cuboid2[0][0], Cuboid2[0][1] }, { Cuboid2[1][0], Cuboid2[1][1] }, { Cuboid2[2][0], Cuboid2[2][1] }, { Cuboid2[3][0], Cuboid2[3][1] } },
-                new double[4, 2] { { Cuboid2[0][0], Cuboid2[0][1] }, { Cuboid2[4][0], Cuboid2[4][1] }, { Cuboid2[5][0], Cuboid2[5][1] }, { Cuboid2[1][0], Cuboid2[1][1] } },
-                new double[4, 2] { { Cuboid2[3][0], Cuboid2[3][1] }, { Cuboid2[7][0], Cuboid2[7][1] }, { Cuboid2[6][0], Cuboid2[6][1] }, { Cuboid2[2][0], Cuboid2[2][1] } },
-                new double[4, 2] { { Cuboid2[1][0], Cuboid2[1][1] }, { Cuboid2[5][0], Cuboid2[5][1] }, { Cuboid2[6][0], Cuboid2[6][1] }, { Cuboid2[2][0], Cuboid2[2][1] } },
-                //new double[4, 2] { { Cuboid3[0][0], Cuboid3[0][1] }, { Cuboid3[1][0], Cuboid3[1][1] }, { Cuboid3[2][0], Cuboid3[2][1] }, { Cuboid3[3][0], Cuboid3[3][1] } },
-                //new double[4, 2] { { Cuboid3[0][0], Cuboid3[0][1] }, { Cuboid3[4][0], Cuboid3[4][1] }, { Cuboid3[5][0], Cuboid3[5][1] }, { Cuboid3[1][0], Cuboid3[1][1] } },
-                //new double[4, 2] { { Cuboid3[3][0], Cuboid3[3][1] }, { Cuboid3[7][0], Cuboid3[7][1] }, { Cuboid3[6][0], Cuboid3[6][1] }, { Cuboid3[2][0], Cuboid3[2][1] } },
-                //new double[4, 2] { { Cuboid3[1][0], Cuboid3[1][1] }, { Cuboid3[5][0], Cuboid3[5][1] }, { Cuboid3[6][0], Cuboid3[6][1] }, { Cuboid3[2][0], Cuboid3[2][1] } },
-                //new double[4, 2] { { Cuboid4[0][0], Cuboid4[0][1] }, { Cuboid4[1][0], Cuboid4[1][1] }, { Cuboid4[2][0], Cuboid4[2][1] }, { Cuboid4[3][0], Cuboid4[3][1] } },
-                //new double[4, 2] { { Cuboid4[0][0], Cuboid4[0][1] }, { Cuboid4[4][0], Cuboid4[4][1] }, { Cuboid4[5][0], Cuboid4[5][1] }, { Cuboid4[1][0], Cuboid4[1][1] } },
-                //new double[4, 2] { { Cuboid4[3][0], Cuboid4[3][1] }, { Cuboid4[7][0], Cuboid4[7][1] }, { Cuboid4[6][0], Cuboid4[6][1] }, { Cuboid4[2][0], Cuboid4[2][1] } },
-                //new double[4, 2] { { Cuboid4[1][0], Cuboid4[1][1] }, { Cuboid4[5][0], Cuboid4[5][1] }, { Cuboid4[6][0], Cuboid4[6][1] }, { Cuboid4[2][0], Cuboid4[2][1] } }
-            };
-            return pointsList;
+                List<double> point2D = new List<double>
+                {
+                    Cuboid2[i][0] * distance / (Cuboid2[i][2] + distance),
+                    Cuboid2[i][1] * distance / (Cuboid2[i][2] + distance)
+                };
+                Points2D.Add(point2D);
+            }
+            for (int i = 0; i < Cuboid3.Count; i++)
+            {
+                List<double> point2D = new List<double>
+                {
+                    Cuboid3[i][0] * distance / (Cuboid3[i][2] + distance),
+                    Cuboid3[i][1] * distance / (Cuboid3[i][2] + distance)
+                };
+                Points2D.Add(point2D);
+            }
+            for (int i = 0; i < Cuboid4.Count; i++)
+            {
+                List<double> point2D = new List<double>
+                {
+                    Cuboid4[i][0] * distance / (Cuboid4[i][2] + distance),
+                    Cuboid4[i][1] * distance / (Cuboid4[i][2] + distance)
+                };
+                Points2D.Add(point2D);
+            }
         }
     }
 }
