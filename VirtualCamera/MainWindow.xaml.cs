@@ -149,6 +149,46 @@ namespace VirtualCamera
                 fileScene.MoveCamera("Up");
                 DrawScene(fileScene.Points2D);
             }
+            else if (e.Key == Key.Right)
+            {
+                fileScene.RotateScene("Y", 1);
+                DrawScene(fileScene.Points2D);
+            }
+            else if (e.Key == Key.Left)
+            {
+                fileScene.RotateScene("Y", -1);
+                DrawScene(fileScene.Points2D);
+            }
+            else if (e.Key == Key.O)
+            {
+                fileScene.RotateScene("X", -1);
+                DrawScene(fileScene.Points2D);
+            }
+            else if (e.Key == Key.P)
+            {
+                fileScene.RotateScene("X", 1);
+                DrawScene(fileScene.Points2D);
+            }
+            else if (e.Key == Key.K)
+            {
+                fileScene.RotateScene("Z", -1);
+                DrawScene(fileScene.Points2D);
+            }
+            else if (e.Key == Key.L)
+            {
+                fileScene.RotateScene("Z", 1);
+                DrawScene(fileScene.Points2D);
+            }
+            else if (e.Key == Key.OemPlus)
+            {
+                fileScene.ZoomScene("+");
+                DrawScene(fileScene.Points2D);
+            }
+            else if (e.Key == Key.OemMinus)
+            {
+                fileScene.ZoomScene("-");
+                DrawScene(fileScene.Points2D);
+            }
         }
     }
 }
