@@ -1,7 +1,7 @@
-#Virtual Camera
+# Virtual Camera
 The goal of this program is to show how to draw 3D objects in 2D coordinate system.  
 
-##Control settings:
+## Control settings:
 `A` - move left  
 `D` - move rigth  
 `W` - move upwards  
@@ -21,7 +21,7 @@ The goal of this program is to show how to draw 3D objects in 2D coordinate syst
 `+` - zoom in  
 `-` - zoom out  
 
-##Safety precautions
+## Safety precautions
 In order to work properly, this program needs a configuration file.  
 The template file is in VirtualCamera catalog. Please make sure that you have this file in the directory in which you keep .exe file.  
 You can make changes to the scene but be carefull as this program trusts configuration data and may behave strange when configuration contains an error.  
