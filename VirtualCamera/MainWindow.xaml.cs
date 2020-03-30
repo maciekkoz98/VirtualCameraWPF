@@ -96,19 +96,19 @@ namespace VirtualCamera
                         StrokeThickness = 2
                     };
                 }
-                if (color == 0)
+                if (color % 32 == 0)
                 {
                     line.Stroke = Brushes.White;
                 }
-                else if (color == 8)
+                else if (color % 32 == 8)
                 {
                     line.Stroke = Brushes.Green;
                 }
-                else if (color == 16)
+                else if (color % 32 == 16)
                 {
                     line.Stroke = Brushes.Purple;
                 }
-                else if (color == 24)
+                else if (color % 32 == 24)
                 {
                     line.Stroke = Brushes.Yellow;
                 }

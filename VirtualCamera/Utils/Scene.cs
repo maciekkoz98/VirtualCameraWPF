@@ -165,8 +165,9 @@ namespace VirtualCamera.Utils
                     distance -= 10;
                     break;
                 case "-":
-                    if (distance == -10)
+                    if (distance >= -10)
                     {
+                        distance = -10;
                         return;
                     }
                     distance += 10;
