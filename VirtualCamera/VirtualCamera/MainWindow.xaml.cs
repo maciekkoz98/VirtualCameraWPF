@@ -70,7 +70,6 @@ namespace VirtualCamera
 
         private void DrawRectangle(List<List<double>> points, int color)
         {
-
             for (int i = 0; i < points.Count; i++)
             {
                 Line line;
