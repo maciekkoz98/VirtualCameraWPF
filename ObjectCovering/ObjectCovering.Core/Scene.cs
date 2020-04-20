@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Windows.Media;
 
 namespace ObjectCovering.Core
 {
@@ -18,6 +21,25 @@ namespace ObjectCovering.Core
             }
 
             distance = -CameraPos[2];
+        }
+
+        public void SetPolygonsFillColor()
+        {
+            Random rnd = new Random();
+            foreach (var polygon in Polygons)
+            {
+                polygon.FillColor = PickBrush(rnd);
+            }
+        }
+
+        private Brush PickBrush(Random rnd)
+        {
+            Type brushesType = typeof(Brushes);
+
+            PropertyInfo[] properties = brushesType.GetProperties();
+
+            int random = rnd.Next(properties.Length);
+            return (Brush)properties[random].GetValue(null, null);
         }
 
         public void SortPolygons()
@@ -78,6 +100,7 @@ namespace ObjectCovering.Core
                     }
                     break;
             }
+            SortPolygons();
             From3Dto2D();
         }
 
@@ -97,6 +120,7 @@ namespace ObjectCovering.Core
                     distance += 10;
                     break;
             }
+            SortPolygons();
             From3Dto2D();
         }
 
@@ -123,6 +147,7 @@ namespace ObjectCovering.Core
                     }
                     break;
             }
+            SortPolygons();
             From3Dto2D();
         }
     }

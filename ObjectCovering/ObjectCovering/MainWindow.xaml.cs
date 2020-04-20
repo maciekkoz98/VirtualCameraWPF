@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ObjectCovering.Core;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -45,6 +44,7 @@ namespace ObjectCovering
             }
             fileScene = JsonConvert.DeserializeObject<Scene>(file);
             fileScene.MakeCameraPosZeroPoint();
+            fileScene.SetPolygonsFillColor();
             fileScene.SortPolygons();
             fileScene.From3Dto2D();
             DrawScene();
@@ -53,36 +53,25 @@ namespace ObjectCovering
         private void DrawScene()
         {
             sceneCanvas.Children.Clear();
-            Random rnd = new Random();
+
             foreach (var polygon in fileScene.Polygons)
             {
-                Trace.WriteLine(polygon);
                 PointCollection polygon2D = new PointCollection();
                 foreach (var point in polygon.Points2D)
                 {
                     Point point2D = new Point(point[0] + 400, point[1] + 310);
                     polygon2D.Add(point2D);
                 }
-                var brush = PickBrush(rnd);
+
                 Polygon canvasPolygon = new Polygon()
                 {
                     Points = polygon2D,
-                    Stroke = brush,
-                    Fill = brush,
-                    StrokeThickness = 2
+                    Stroke = Brushes.Black,
+                    Fill = polygon.FillColor,
+                    StrokeThickness = 1
                 };
                 sceneCanvas.Children.Add(canvasPolygon);
             }
-        }
-
-        private Brush PickBrush(Random rnd)
-        {
-            Type brushesType = typeof(Brushes);
-
-            PropertyInfo[] properties = brushesType.GetProperties();
-
-            int random = rnd.Next(properties.Length);
-            return (Brush)properties[random].GetValue(null, null);
         }
 
         private void KeyboardKeyPressed(object sender, KeyEventArgs e)
