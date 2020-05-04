@@ -4,4 +4,4 @@ This repository consist of three projects:
 2. Object Covering:
     This project shows clipping shapes using painter's algorithm.  
 3. Light Simulator:
-    This project simulates ligth reflections. (Under construction)
+    This project simulates light reflections. (Under construction)
