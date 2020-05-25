@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongShading", "PhongShading\PhongShading.csproj", "{8F6F7ED2-2EEB-47F2-9469-49ED4F9A3918}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongSimulator", "PhongSimulator\PhongSimulator.csproj", "{4A239F8E-7D09-43C9-B683-9DB607D1713B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F6F7ED2-2EEB-47F2-9469-49ED4F9A3918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F6F7ED2-2EEB-47F2-9469-49ED4F9A3918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F6F7ED2-2EEB-47F2-9469-49ED4F9A3918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F6F7ED2-2EEB-47F2-9469-49ED4F9A3918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A239F8E-7D09-43C9-B683-9DB607D1713B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A239F8E-7D09-43C9-B683-9DB607D1713B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A239F8E-7D09-43C9-B683-9DB607D1713B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A239F8E-7D09-43C9-B683-9DB607D1713B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8DAA3621-B2C5-4156-9380-5822E10759BF}
+	EndGlobalSection
+EndGlobal
