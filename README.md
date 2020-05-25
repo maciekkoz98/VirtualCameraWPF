@@ -6,3 +6,4 @@ This repository consist of three projects:
 3. Light Simulator:   
     This project simulates ligth reflections. I used Phong shading algorithm.
     I based this project on witek1902 [repository](https://github.com/witek1902/lighting-visualisation)  
+
