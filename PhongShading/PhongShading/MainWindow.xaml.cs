@@ -82,18 +82,27 @@ namespace PhongShading
             {
                 case "matRadio":
                     phongAgent.Kd = 0.75;
+                    KdText.Text = "Kd: 0.75";
                     phongAgent.Ks = 0.25;
+                    KsText.Text = "Ks: 0.25";
                     phongAgent.N = 5;
+                    NText.Text = "N: 5";
                     break;
                 case "mixedRadio":
                     phongAgent.Kd = 0.5;
+                    KdText.Text = "Kd: 0.5";
                     phongAgent.Ks = 0.5;
-                    phongAgent.N = 10;
+                    KsText.Text = "Ks: 0.5";
+                    phongAgent.N = 50;
+                    NText.Text = "N: 50";
                     break;
                 case "metalRadio":
                     phongAgent.Kd = 0.25;
+                    KdText.Text = "Kd: 0.25";
                     phongAgent.Ks = 0.75;
+                    KsText.Text = "Ks: 0.75";
                     phongAgent.N = 100;
+                    NText.Text = "N: 100";
                     break;
             }
             NewScene();
